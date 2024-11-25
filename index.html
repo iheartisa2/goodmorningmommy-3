@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Morning, My Princess</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: black;
+            color: pink;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        h1, p {
+            text-shadow: 0 0 10px pink, 0 0 20px pink, 0 0 30px hotpink;
+            position: relative;
+            z-index: 2; /* Ensures text appears on top */
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.5em;
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.imgur.com/GVNqVR1.jpeg') repeat;
+            z-index: 0; /* Background layer */
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; /* Hearts layer */
+        }
+        .heart {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            background: pink;
+            transform: rotate(-45deg);
+            animation: floatHearts 5s infinite ease-in-out;
+        }
+        .heart::before, .heart::after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            background: pink;
+            border-radius: 50%;
+        }
+        .heart::before {
+            top: -15px;
+            left: 0;
+        }
+        .heart::after {
+            left: 15px;
+            top: 0;
+        }
+        @keyframes floatHearts {
+            0% {
+                transform: translateY(0) scale(1) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) scale(0.5) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="hearts"></div>
+    <div>
+        <h1>Good Morning, My Beautiful Princess :3</h1>
+        <p>Today is another day we made it together and forever more to go :3 <span>&lt;3</span></p>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.querySelector('.hearts').appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+</body>
+</html>
